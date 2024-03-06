@@ -6,7 +6,9 @@ import { db } from "./client";
 import { uploads } from "./schema";
 
 const app = new Elysia();
-app.use(cors());
+app.use(cors({
+	"origin": ["https://ta.trc.lol", "http://localhost:3000"]
+}));
 
 app.get("/", () => "Hello Elysia");
 
