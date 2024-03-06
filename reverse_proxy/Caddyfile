@@ -1,11 +1,10 @@
-{
-    auto_https off
+localhost:80, ta-api.trc.lol {
+    reverse_proxy localhost:3000
+
+    encode gzip
+
     log {
         output stdout
         format json
     }
-}
-
-localhost:80, ta-api.trc.lol {
-    reverse_proxy localhost:3000
 }
