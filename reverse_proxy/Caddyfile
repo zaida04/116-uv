@@ -6,6 +6,6 @@
     }
 }
 
-ta-api.trc.lol {
+localhost:80, ta-api.trc.lol {
     reverse_proxy localhost:3000
 }
