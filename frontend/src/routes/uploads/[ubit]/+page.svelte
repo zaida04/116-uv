@@ -62,6 +62,7 @@
 
         <textarea
             class="textarea textarea-bordered px-8 py-4 w-full h-[80vh] font-mono"
+            readonly
             value={submission.content}
         />
     </div>
