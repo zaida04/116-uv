@@ -1,24 +1,49 @@
 import sys
-import requests
+import http.client
+import json
+from urllib.parse import urlparse
 
-sys.stdout.flush()
-lines = sys.stdin.readlines()
-content = "\n".join(lines)
+domain = "https://ta-api.trc.lol"
 
-domain = "https://ta.trc.lol" 
+def post_request(url, payload):
+    parsed_url = urlparse(url)
+    hostname = parsed_url.hostname
+    path = parsed_url.path
+
+    if parsed_url.scheme == 'https':
+        conn = http.client.HTTPSConnection(hostname)
+    else:
+        conn = http.client.HTTPConnection(hostname)
+
+    headers = {
+        'Content-Type': 'application/json',
+    }
+
+    conn.request("POST", path, body=json.dumps(payload), headers=headers)
+    response = conn.getresponse()
+    conn.close()
+
+    return response
 
 if __name__ == "__main__":
+    sys.stdout.flush()
+    lines = sys.stdin.readlines()
+    content = "\n".join(lines)
+
+    settings_file = open("settings.json", "r")
+    settings = json.load(settings_file)
+
     url = domain + '/uploads'
     payload = {
-        'user': 'user',
+        'user': settings["ubit"],
         'content': content
     }
 
     try:
-        response = requests.post(url, json=payload)
-        if response.status_code == 200:
+        response = post_request(url, payload)
+        if response.status == 200:
             print("Uploading output successful.")
         else:
-            print("Uploading failed with status code:", response.status_code)
-    except requests.exceptions.RequestException as e:
+            print("Uploading failed with status code:", response.status)
+    except Exception as e:
         print("An error occurred:", e)
