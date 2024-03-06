@@ -28,7 +28,7 @@ def post_request(url, payload):
 if __name__ == "__main__":
     sys.stdout.flush()
     lines = sys.stdin.readlines()
-    content = "\n".join(lines)
+    content = "".join(lines)
 
     settings_file = open("settings.json", "r")
     settings = json.load(settings_file)
