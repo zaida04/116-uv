@@ -13,7 +13,7 @@ find ./submission -depth -name '* *' \
 
 find ./submission/ -type f -name '*.class' -delete
 
-python3 prechecks.py
+python3.12 prechecks.py
 
 MY_CLASSPATH=".:output"
 for jar in `ls lib/*.jar`;do
@@ -86,15 +86,13 @@ if [[ -e clean.txt ]]; then
         # test correct code last to prevent the "pass first two then always fail" attack
         java -classpath "$MY_CLASSPATH:correct" "grading.RunStudentTests" "results/correct_solution.json"
 
-
+    # JESSE: see here
     } 2>&1 | python3 upload.py
 
 fi
 
+python3.12 gather_results.py
 
-
-python3 gather_results.py
-
-# rm -rf output
-# rm -rf results
-# rm -rf submission
+rm -rf output
+rm -rf results
+rm -rf submission
