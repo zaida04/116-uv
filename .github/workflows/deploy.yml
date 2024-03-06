@@ -7,9 +7,6 @@ jobs:
         name: Deploy to Production
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
-
             - name: executing remote ssh commands using ssh key
               uses: appleboy/ssh-action@master
               with:
