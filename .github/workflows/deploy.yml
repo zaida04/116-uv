@@ -19,6 +19,6 @@ jobs:
                       export PATH=$BUN_INSTALL/bin:$PATH
 
                       cd 116-uv/api
-                      git pull
+                      git fetch && git clean -fd && git reset --hard HEAD && git pull --rebase
                       bun install && bun run migrate:run
                       pm2 restart auv
