@@ -19,4 +19,8 @@
         }}
     />
     <a href={`/uploads/${ubit}`} class="btn btn-primary">Lookup</a>
+
+    <p class="text-sm mt-8">
+        Made by <a class="link" href="https://nico.engineer">Zaid Arshad</a>
+    </p>
 </Hero>
