@@ -25,7 +25,8 @@
                 return;
             }
 
-            console.error("Failed to fetch data");
+            console.error(response);
+            alert("Failed to fetch data");
         }
     });
 </script>
