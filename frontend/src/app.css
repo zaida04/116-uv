@@ -14,4 +14,8 @@
     h3 {
         @apply text-3xl md:text-2xl font-bold;
     }
+
+    code {
+        @apply bg-neutral px-1 rounded-sm
+    }
 }

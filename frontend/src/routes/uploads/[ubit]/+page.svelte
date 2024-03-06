@@ -44,8 +44,17 @@
         </p>
     </Hero>
 {:else if submission === null}
-    <h1>Loading...</h1>
+    <Hero>
+        <span class="loading loading-spinner text-warning"></span>
+    </Hero>
 {:else}
-    <h1>{submission.user}</h1>
-    <p>{@html submission.content}</p>
+    <div class="px-8 py-6">
+        <h1 class="mb-4">
+            Output for <code>{submission.user}</code>
+        </h1>
+        <textarea
+            class="textarea textarea-bordered px-8 py-4 w-full h-[80vh] font-mono"
+            value={submission.content}
+        />
+    </div>
 {/if}
