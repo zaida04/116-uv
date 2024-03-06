@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import { page } from "$app/stores";
     import { fetcher } from "../../../lib/fetcher";
+    import Hero from "../../../components/Hero.svelte";
 
     interface Submission {
         user: string;
@@ -31,13 +32,20 @@
     });
 </script>
 
-<main>
-    {#if notFound}
-        <h1>404 Not Found</h1>
-    {:else if submission === null}
-        <h1>Loading...</h1>
-    {:else}
-        <h1>{submission.user}</h1>
-        <p>{@html submission.content}</p>
-    {/if}
-</main>
+{#if notFound}
+    <Hero>
+        <h1 class="mb-2">404 Not Found</h1>
+        <p class="mb-8">
+            No autolab upload for UBIT <code>{$page.params.ubit}</code>
+        </p>
+        <p>
+            Make this student
+            <b>has submitted at least once since 3-6-2024.</b>
+        </p>
+    </Hero>
+{:else if submission === null}
+    <h1>Loading...</h1>
+{:else}
+    <h1>{submission.user}</h1>
+    <p>{@html submission.content}</p>
+{/if}
