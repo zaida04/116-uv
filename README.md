@@ -23,7 +23,7 @@ You can view the database at `sqlite.db`
   
 You can test it by doing `curl http://localhost`. If you want to use the subdomain, you'll need to set up a DNS record to point to your server. 
   
-We use cloudflare, so we set up a `A` record to point to our server. Make sure your SSL setting is set to `Full (Strictest)`.  
+We use cloudflare, so we set up a `A` record to point to our server for the `ta-api.trc.lol` subdomain. Make sure the cloud is set to orange (that means cloudflare is proxying our records). Make sure your SSL setting is set to `Full (Strictest)`.  
 
 ## Deploying Frontend
 
