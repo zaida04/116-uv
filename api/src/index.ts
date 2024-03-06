@@ -16,8 +16,15 @@ app.post(
 		const { user, content } = ctx.body;
 		const new_id = nanoid();
 
-		const inserted = await db.insert(uploads).values({ id: new_id, user, content, created_at: new Date() }).returning();
-		console.log(inserted);
+		const inserted = await db
+			.insert(uploads)
+			.values({
+				id: new_id,
+				user,
+				content,
+				created_at: new Date(),
+			})
+			.returning();
 		return inserted;
 	},
 	{
@@ -32,17 +39,18 @@ app.get(
 	"/uploads/:user",
 	async (ctx) => {
 		const { user } = ctx.params;
-
-		const result = await db.select().from(uploads).where(eq(uploads.user, user)).orderBy(desc(uploads.created_at));
+		const result = await db
+			.select()
+			.from(uploads)
+			.where(eq(uploads.user, user))
+			.orderBy(desc(uploads.created_at));
 
 		if (result.length === 0) {
 			ctx.set.status = 404;
 			return { error: "No uploads found" };
 		}
 
-		console.log(result);
-
-		return { submission: result.at(0) ?? null };
+		return { submission: result[0] };
 	},
 	{
 		params: t.Object({

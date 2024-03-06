@@ -11,7 +11,7 @@
 		"lineEnding": "lf",
 		"indentWidth": 2,
 		"indentStyle": "tab",
-		"lineWidth": 200
+		"lineWidth": 100
 	},
 	"linter": {
 		"enabled": false
