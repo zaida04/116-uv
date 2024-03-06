@@ -3,10 +3,12 @@
     import { page } from "$app/stores";
     import { fetcher } from "../../../lib/fetcher";
     import Hero from "../../../components/Hero.svelte";
+    import { formatDateTime } from "$lib/date";
 
     interface Submission {
         user: string;
         content: string;
+        created_at: string;
     }
 
     let submission: Submission | null = null;
@@ -50,9 +52,14 @@
 {:else}
     <div class="px-8 py-6">
         <a href="/" class="btn btn-sm btn-neutral mb-2">go back</a>
-        <h1 class="mb-4">
+
+        <h1 class="mb-1">
             Output for <code>{submission.user}</code>
         </h1>
+        <p class="text-sm mb-4">
+            Uploaded at {formatDateTime(new Date(submission.created_at))}
+        </p>
+
         <textarea
             class="textarea textarea-bordered px-8 py-4 w-full h-[80vh] font-mono"
             value={submission.content}
