@@ -1,0 +1,10 @@
+{
+    log {
+        output stdout
+        format json
+    }
+}
+
+ta-api.trc.lol {
+    reverse_proxy localhost:3000
+}
