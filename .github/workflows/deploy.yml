@@ -1,0 +1,23 @@
+name: Deploy to Production
+on:
+    workflow_dispatch:
+
+jobs:
+    deploy:
+        name: Deploy to Production
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: executing remote ssh commands using ssh key
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.VPS_HOST }}
+                  username: nico
+                  password: ${{ secrets.VPS_PASSWORD }}
+                  port: 22
+                  script: |
+                      cd 116-uv/api
+                      bun install && bun run migrate:run
+                      pm2 restart auv
