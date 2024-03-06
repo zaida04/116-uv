@@ -1,18 +1,18 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { page } from "$app/stores";
+    import { fetcher } from "../../../lib/fetcher";
 
     let submission: { user: string; content: string } | null = null;
     let notFound = false;
 
     onMount(async () => {
-        const response = await fetch(
-            `http://localhost:3000/uploads/${$page.params.ubit}`,
-        );
-        if (response.ok) {
+        const response = await fetcher("GET", `/uploads/${$page.params.ubit}`);
+
+        if (response.submission) {
             submission = (await response.json()).submission;
         } else {
-            if (response.status === 404) {
+            if (response.error === "No uploads found") {
                 notFound = true;
                 return;
             }
