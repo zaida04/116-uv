@@ -49,6 +49,7 @@
     </Hero>
 {:else}
     <div class="px-8 py-6">
+        <a href="/" class="btn btn-sm btn-neutral mb-2">go back</a>
         <h1 class="mb-4">
             Output for <code>{submission.user}</code>
         </h1>
