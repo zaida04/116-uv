@@ -18,6 +18,9 @@ jobs:
                   password: ${{ secrets.VPS_PASSWORD }}
                   port: 22
                   script: |
+                      export BUN_INSTALL="$HOME/.bun"
+                      export PATH=$BUN_INSTALL/bin:$PATH
+
                       cd 116-uv/api
                       bun install && bun run migrate:run
                       pm2 restart auv
