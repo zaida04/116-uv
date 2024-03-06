@@ -1,0 +1,19 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"files": {
+		"ignore": ["dist", "node_modules", ".svelte-kit", "*.json"]
+	},
+	"formatter": {
+		"enabled": true,
+		"lineEnding": "lf",
+		"indentWidth": 2,
+		"indentStyle": "tab",
+		"lineWidth": 200
+	},
+	"linter": {
+		"enabled": false
+	}
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@ov/api",
+  "version": "1.0.50",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "build": "tsc --noEmit",
+    "generate": "drizzle-kit generate:sqlite --schema=./src/schema.ts",
+    "migrate:run": "bun ./src/migrate.ts",
+    "format": "biome check --apply-unsafe ."
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^0.8.0",
+    "drizzle-orm": "^0.29.4",
+    "elysia": "latest",
+    "nanoid": "^5.0.6"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.3",
+    "bun-types": "latest",
+    "drizzle-kit": "^0.20.14",
+    "typescript": "^5.3.3"
+  }
+}
