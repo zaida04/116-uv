@@ -3,14 +3,22 @@
     import { page } from "$app/stores";
     import { fetcher } from "../../../lib/fetcher";
 
-    let submission: { user: string; content: string } | null = null;
+    interface Submission {
+        user: string;
+        content: string;
+    }
+
+    let submission: Submission | null = null;
     let notFound = false;
 
     onMount(async () => {
-        const response = await fetcher("GET", `/uploads/${$page.params.ubit}`);
+        const response = await fetcher<{ submission: Submission }>(
+            "GET",
+            `/uploads/${$page.params.ubit}`,
+        );
 
-        if (response.submission) {
-            submission = (await response.json()).submission;
+        if (response.error === false) {
+            submission = response.submission;
         } else {
             if (response.error === "No uploads found") {
                 notFound = true;

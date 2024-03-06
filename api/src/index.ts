@@ -25,7 +25,10 @@ app.post(
 				created_at: new Date(),
 			})
 			.returning();
-		return inserted;
+		return {
+			error: false,
+			submission: inserted[0],
+		};
 	},
 	{
 		body: t.Object({
@@ -50,7 +53,10 @@ app.get(
 			return { error: "No uploads found" };
 		}
 
-		return { submission: result[0] };
+		return {
+			error: false,
+			submission: result[0],
+		};
 	},
 	{
 		params: t.Object({
