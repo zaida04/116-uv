@@ -5,6 +5,7 @@ import { requests, uploads } from "../db/schema";
 
 import { nanoid } from "nanoid";
 import tas from "../tas.json";
+import { emailer } from "../emailer";
 
 const router = new Elysia();
 
@@ -36,6 +37,19 @@ router.post(
 				created_at: new Date(),
 			})
 			.returning();
+
+		if (process.env.NODE_ENV === "production") {
+			try {
+				await emailer.messages.create("ta.trc.lol", {
+					from: "116 Output Viewer <116@ta.trc.lol>",
+					to: `${requested_by}@buffalo.edu`,
+					subject: "Request for 116 Output Viewer",
+					text: `You have a request for 116 Output Viewer. https://ta.trc.lol/requests/${request_id}`
+				});
+			} catch (e) {
+				console.log(e);
+			}
+		}
 
 		return {
 			error: false,
