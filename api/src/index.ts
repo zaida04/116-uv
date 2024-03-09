@@ -20,7 +20,7 @@ Err:
 app.get("/", () => "Hello Elysia");
 // The flow goes
 // autolab: create_upload
-// ta: upload_exists, upload_request, get_upload
+// ta: get_upload (checking if exists), create_request, get_request
 // "but zaid, why not condense those 3 into one route?"
 // because this is our makeshift auth that ensures only TAs can request uploads
 app.use(create_upload);
