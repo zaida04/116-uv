@@ -7,4 +7,11 @@ const uploads = sqliteTable("uploads", {
 	created_at: integer("created_at", { mode: "timestamp_ms" }),
 });
 
-export { uploads };
+const requests = sqliteTable("request", {
+	id: text("id").primaryKey(),
+	requested_by: text("requested_by").notNull(),
+	upload_id: text("upload_id").notNull(),
+	created_at: integer("created_at", { mode: "timestamp_ms" }),
+});
+
+export { uploads, requests };

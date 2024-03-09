@@ -8,6 +8,13 @@
       "when": 1709694100513,
       "tag": "0000_special_mandarin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1709946491684,
+      "tag": "0001_nice_spirit",
+      "breakpoints": true
     }
   ]
 }
