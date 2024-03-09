@@ -3,25 +3,20 @@
     import { page } from "$app/stores";
     import { fetcher } from "../../../lib/fetcher";
     import Hero from "../../../components/Hero.svelte";
-    import { formatDateTime } from "$lib/date";
 
-    interface Submission {
-        user: string;
-        content: string;
-        created_at: string;
-    }
-
-    let submission: Submission | null = null;
+    let exists: boolean | null = null;
     let notFound = false;
+    let ubit: string = "";
+    let createRequestSuccess: boolean | null = null;
 
     onMount(async () => {
-        const response = await fetcher<{ submission: Submission }>(
+        const response = await fetcher<{ error: false | string }>(
             "GET",
             `/uploads/${$page.params.ubit}`,
         );
 
         if (response.error === false) {
-            submission = response.submission;
+            exists = true;
         } else {
             if (response.error === "No uploads found") {
                 notFound = true;
@@ -32,6 +27,34 @@
             alert("Failed to fetch data");
         }
     });
+
+    async function submitRequest() {
+        if (ubit === "") {
+            alert("Please enter your UBIT");
+            return;
+        }
+
+        const data = await fetcher<{}>(
+            "POST",
+            `/uploads/${$page.params.ubit}/request`,
+            {
+                body: { requested_by: ubit },
+            },
+        );
+
+        if (data.error === false) {
+            createRequestSuccess = true;
+            return;
+        }
+
+        if (data.error === "You are not authorized to request this upload") {
+            alert("You are NOT a TA.");
+            return;
+        }
+
+        alert("Failed to send email. Contact Zaid.");
+        console.error(data);
+    }
 </script>
 
 {#if notFound}
@@ -45,25 +68,37 @@
             <b>has submitted at least once since 3-6-2024.</b>
         </p>
     </Hero>
-{:else if submission === null}
+{:else if createRequestSuccess === true}
+    <Hero>
+        <h1 class="mb-2">Request Sent</h1>
+        <p class="mb-8">An email has been sent to YOU with the output link.</p>
+        <p>You can close this tab now.</p>
+    </Hero>
+{:else if exists === null}
     <Hero>
         <span class="loading loading-spinner text-warning"></span>
     </Hero>
 {:else}
-    <div class="px-8 py-6">
-        <a href="/" class="btn btn-sm btn-neutral mb-2">go back</a>
-
-        <h1 class="mb-1">
-            Output for <code>{submission.user}</code>
-        </h1>
-        <p class="text-sm mb-4">
-            Uploaded at {formatDateTime(new Date(submission.created_at))}
+    <Hero>
+        <h1 class="mb-4 text-5xl">Upload found!</h1>
+        <p class="mb-1">You must be a TA to view this output.</p>
+        <p class="mb-1">
+            For security purposes, you need to input YOUR TA UBIT.
         </p>
-
-        <textarea
-            class="textarea textarea-bordered px-8 py-4 w-full h-[80vh] font-mono"
-            readonly
-            value={submission.content}
+        <p class="mb-3">You will then be email a link to view the output.</p>
+        <input
+            type="text"
+            placeholder="Type your TA UBIT here"
+            class="input w-full max-w-xs mb-2"
+            bind:value={ubit}
+            on:keypress={(e) => {
+                if (e.key === "Enter") {
+                    submitRequest();
+                }
+            }}
         />
-    </div>
+        <button class="btn btn-primary btn-md" on:click={() => submitRequest()}
+            >Submit</button
+        >
+    </Hero>
 {/if}

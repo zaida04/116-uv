@@ -9,7 +9,7 @@
 
     <input
         type="text"
-        placeholder="Type UBIT here"
+        placeholder="Type UBIT of student to look up"
         class="input w-full max-w-xs mr-2"
         bind:value={ubit}
         on:keypress={(e) => {
