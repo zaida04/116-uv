@@ -9,6 +9,7 @@ import { emailer } from "../emailer";
 
 const router = new Elysia();
 
+// This is for the TA to request a student's upload to their email.
 router.post(
 	"/uploads/:user/request",
 	async (ctx) => {

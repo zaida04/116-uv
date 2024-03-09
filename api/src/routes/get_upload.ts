@@ -5,6 +5,7 @@ import { uploads } from "../db/schema";
 
 const router = new Elysia();
 
+// This is for checking if a UBIT has any uploads.
 router.get(
 	"/uploads/:user",
 	async (ctx) => {

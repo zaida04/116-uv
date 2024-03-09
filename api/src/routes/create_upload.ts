@@ -5,6 +5,7 @@ import { uploads } from "../db/schema";
 
 const router = new Elysia();
 
+// This is for autolab to upload output.
 router.post(
 	"/uploads",
 	async (ctx) => {

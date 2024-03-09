@@ -5,6 +5,7 @@ import { requests, uploads } from "../db/schema";
 
 const router = new Elysia();
 
+// This is for the TA to view a output.
 router.get(
 	"/uploads/requests/:id",
 	async (ctx) => {
