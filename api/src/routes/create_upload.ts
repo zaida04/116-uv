@@ -20,6 +20,7 @@ router.post(
 				created_at: new Date(),
 			})
 			.returning();
+
 		return {
 			error: false,
 			submission: inserted[0],

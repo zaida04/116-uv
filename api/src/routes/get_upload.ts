@@ -1,29 +1,25 @@
 import { eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { db } from "../client";
-import { requests } from "../schema";
+import { uploads } from "../schema";
 
 const router = new Elysia();
 
 router.get(
-	"/uploads/:id",
+	"/uploads/:user",
 	async (ctx) => {
-		const { id } = ctx.params;
-		const result = await db.select().from(requests).where(eq(requests.id, id));
+		const { user } = ctx.params;
+		const [upload] = await db.select().from(uploads).where(eq(uploads.user, user));
 
-		if (result.length === 0) {
-			ctx.set.status = 404;
-			return { error: "No uploads found" };
-		}
+		if (!upload) ctx.set.status = 404;
 
 		return {
-			error: false,
-			submission: result[0],
+			error: upload ? false : "No uploads found",
 		};
 	},
 	{
 		params: t.Object({
-			id: t.String(),
+			user: t.String(),
 		}),
 	},
 );
