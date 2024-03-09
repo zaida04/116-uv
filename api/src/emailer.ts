@@ -1,6 +1,6 @@
 import Mailgun from "mailgun.js";
 
-if (!process.env.MAILGUN_API_KEY && process.env.NODE_ENV === "production") {
+if (!process.env.MAILGUN_API_KEY && process.env.BUN_ENV === "production") {
     throw new Error("MAILGUN_API_KEY is not defined");
 }
 

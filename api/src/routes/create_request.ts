@@ -38,7 +38,7 @@ router.post(
 			})
 			.returning();
 
-		if (process.env.NODE_ENV === "production") {
+		if (process.env.BUN_ENV === "production") {
 			try {
 				console.log(`Sending email for ${request_id} of student ${upload.user} to TA ${requested_by}`)
 				await emailer.messages.create("ta.trc.lol", {
@@ -56,7 +56,7 @@ router.post(
 
 		return {
 			error: false,
-			id: process.env.NODE_ENV === "production" ? undefined : request_id,
+			id: process.env.BUN_ENV === "production" ? undefined : request_id,
 		};
 	},
 	{
