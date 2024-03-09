@@ -2,10 +2,7 @@ import { expect, test } from "bun:test";
 import { makeApiRequest } from "./shared.test";
 
 test("retrieve uploads for existing user", async () => {
-	await makeApiRequest("/uploads", "POST", {
-		user: "testUser",
-		content: "testContent",
-	});
+	// Check whether an upload exists for testUser
 	const response = await makeApiRequest("/uploads/testUser", "GET");
 	expect(response.status).toBe(200);
 

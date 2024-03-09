@@ -9,7 +9,11 @@ import upload_request from "./routes/create_request";
 const app = new Elysia();
 app.use(cors());
 app.onError((ctx) => {
-	console.log(ctx.error);
+	console.log(`
+Err:
+	route: ${ctx.request.url}
+	${ctx.error}
+	`);
 	return { error: "An internal error occurred" };
 });
 

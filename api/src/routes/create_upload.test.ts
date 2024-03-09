@@ -3,7 +3,7 @@ import { makeApiRequest } from "./shared.test";
 
 test("successful upload submission", async () => {
 	const response = await makeApiRequest("/uploads", "POST", {
-		user: "testUser",
+		user: "testUser2",
 		content: "testContent",
 	});
 	expect(response.status).toBe(200);
@@ -11,7 +11,7 @@ test("successful upload submission", async () => {
 	const data = await response.json();
 	expect(data.error).toBeFalsy();
 	expect(data.submission).toHaveProperty("id");
-	expect(data.submission.user).toBe("testUser");
+	expect(data.submission.user).toBe("testUser2");
 	expect(data.submission.content).toBe("testContent");
 });
 

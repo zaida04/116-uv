@@ -17,11 +17,11 @@ jobs:
             - name: Install dependencies
               run: cd api && bun install
 
+            - name: Setup database
+              run: cd api && bun run migrate:run && bun src/seed.ts
+
             - name: Start service
               run: cd api && nohup bun src/index.ts &
 
-            - name: Wait for API to start
-              run: sleep 2
-
-            - name: Run Tests
+            - name: Run tests
               run: cd api && bun run test --filter=@memd/api
