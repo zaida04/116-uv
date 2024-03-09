@@ -40,13 +40,16 @@ router.post(
 
 		if (process.env.NODE_ENV === "production") {
 			try {
+				console.log(`Sending email for ${request_id} of student ${upload.user} to TA ${requested_by}`)
 				await emailer.messages.create("ta.trc.lol", {
 					from: "116 Output Viewer <116@ta.trc.lol>",
-					to: `${requested_by}@buffalo.edu`,
+					to: `${requested_by.trim()}@buffalo.edu`,
 					subject: "Request for 116 Output Viewer",
 					text: `You have a request for 116 Output Viewer. https://ta.trc.lol/requests/${request_id}`
 				});
+				console.log("Email sent");
 			} catch (e) {
+				console.log("Error sending email");
 				console.log(e);
 			}
 		}
