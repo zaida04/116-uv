@@ -18,7 +18,7 @@ jobs:
               run: cd api && bun install
 
             - name: Setup database
-              run: cd api && bun run migrate:run && bun src/seed.ts
+              run: cd api && bun run pretest
 
             - name: Start service
               run: cd api && nohup bun src/index.ts &

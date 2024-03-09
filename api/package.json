@@ -4,9 +4,9 @@
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "build": "tsc --noEmit",
-    "generate": "drizzle-kit generate:sqlite --schema=./src/schema.ts",
-    "migrate:run": "bun ./src/migrate.ts",
-    "pretest": "rm sqlite.db && bun migrate:run && bun src/seed.ts",
+    "generate": "drizzle-kit generate:sqlite --schema=./src/db/schema.ts",
+    "migrate:run": "bun ./src/db/migrate.ts",
+    "pretest": "rm sqlite.db || bun migrate:run && bun ./src/db/seed.ts",
     "format": "biome check --apply-unsafe ."
   },
   "dependencies": {

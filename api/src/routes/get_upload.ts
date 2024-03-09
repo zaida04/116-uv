@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
-import { db } from "../client";
-import { uploads } from "../schema";
+import { db } from "../db/client";
+import { uploads } from "../db/schema";
 
 const router = new Elysia();
 

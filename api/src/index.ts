@@ -1,10 +1,10 @@
 import cors from "@elysiajs/cors";
 import { Elysia } from "elysia";
 
+import upload_request from "./routes/create_request";
 import create_upload from "./routes/create_upload";
 import get_upload from "./routes/get_request";
 import upload_exists from "./routes/get_upload";
-import upload_request from "./routes/create_request";
 
 const app = new Elysia();
 app.use(cors());
