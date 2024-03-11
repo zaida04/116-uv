@@ -85,7 +85,7 @@
         <p class="mb-1">
             For security purposes, you need to input YOUR TA UBIT.
         </p>
-        <p class="mb-3">You will then be email a link to view the output.</p>
+        <p class="mb-3">You will then be emailed a link to view the output.</p>
         <input
             type="text"
             placeholder="Type your TA UBIT here"
