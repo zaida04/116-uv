@@ -1,14 +1,13 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { page } from "$app/stores";
     import { fetcher } from "../../lib/fetcher";
-    import Hero from "../../components/Hero.svelte";
+    import { formatDateTime } from "$lib/date";
 
     interface Upload {
         id: string;
         user: string;
         content: string;
-        created_at: Date | null;
+        created_at: string;
     }
 
     let uploads: Upload[] | null = null;
@@ -28,14 +27,16 @@
     });
 </script>
 
-<div class="flex w-full justify-center">
+<div class="flex w-full justify-center my-8">
     <div class="w-3/4">
+        <h2 class="mb-2">All Uploads</h2>
+
         <table class="table table-zebra">
             <thead>
                 <tr>
                     <th>UBIT</th>
                     <th>Created At</th>
-                    <th>View</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -43,9 +44,19 @@
                     {#each uploads as upload}
                         <tr>
                             <th>{upload.user}</th>
-                            <td>{upload.created_at}</td>
+                            <td
+                                >{formatDateTime(
+                                    new Date(upload.created_at),
+                                )}</td
+                            >
                             <td>
-                                <a href={`/uploads/${upload.user}`}>View </a>
+                                <a
+                                    class="link"
+                                    href={`/uploads/${upload.user}`}
+                                    target="_blank"
+                                >
+                                    View
+                                </a>
                             </td>
                         </tr>
                     {/each}
