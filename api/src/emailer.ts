@@ -6,7 +6,7 @@ if (!process.env.MAILGUN_API_KEY && process.env.BUN_ENV === "production") {
 
 const emailer = new Mailgun(FormData).client({
     "username": "api",
-    "key": process.env.MAILGUN_API_KEY!
+    "key": process.env.MAILGUN_API_KEY! ?? "test"
 });
 
 export { emailer }

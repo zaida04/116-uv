@@ -5,6 +5,7 @@ import upload_request from "./routes/create_request";
 import create_upload from "./routes/create_upload";
 import get_upload from "./routes/get_request";
 import upload_exists from "./routes/get_upload";
+import get_all_uploads from "./routes/get_all_uploads";
 
 const app = new Elysia();
 app.use(cors());
@@ -27,6 +28,7 @@ app.use(create_upload);
 app.use(get_upload);
 app.use(upload_exists);
 app.use(upload_request);
+app.use(get_all_uploads);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
