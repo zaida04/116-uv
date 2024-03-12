@@ -71,7 +71,8 @@
 {:else if createRequestSuccess === true}
     <Hero>
         <h1 class="mb-2">Request Sent</h1>
-        <p class="mb-8">An email has been sent to YOU with the output link.</p>
+        <p>An email has been sent to YOU with the output link.</p>
+        <p class="mb-8">It may take around 5 minutes for you to receive the email. Make sure it's not in your junk/spam.</p>
         <p>You can close this tab now.</p>
     </Hero>
 {:else if exists === null}
