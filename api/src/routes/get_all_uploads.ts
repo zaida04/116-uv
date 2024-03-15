@@ -15,7 +15,7 @@ router.get(
 
         return {
             error: false,
-            uploads: all_uploads,
+            uploads: [],
         };
     },
 );
