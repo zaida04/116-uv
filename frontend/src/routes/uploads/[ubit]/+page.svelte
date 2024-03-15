@@ -65,7 +65,7 @@
         </p>
         <p>
             Make this student
-            <b>has submitted at least once since 3-6-2024.</b>
+            <b>has submitted at least once since 3-14-2024.</b>
         </p>
     </Hero>
 {:else if createRequestSuccess === true}
