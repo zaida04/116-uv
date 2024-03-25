@@ -1,4 +1,5 @@
 localhost:80, ta-api.trc.lol {
+    # the only important line lol
     reverse_proxy localhost:3000
 
     encode gzip
