@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  api:
+    build:
+      context: api/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      # sqlite db
+      - ./api/data:/usr/src/app/data
