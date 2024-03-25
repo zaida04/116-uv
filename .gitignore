@@ -15,7 +15,7 @@
 
 # production
 /build
-data/
+sqlite.db
 
 # misc
 .DS_Store

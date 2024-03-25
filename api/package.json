@@ -6,7 +6,7 @@
     "build": "tsc --noEmit",
     "generate": "drizzle-kit generate:sqlite --schema=./src/db/schema.ts",
     "migrate:run": "bun ./src/db/migrate.ts",
-    "pretest": "rm sqlite.db || bun migrate:run && bun ./src/db/seed.ts",
+    "pretest": "bun ./src/db/seed.ts",
     "format": "biome check --apply-unsafe ."
   },
   "dependencies": {

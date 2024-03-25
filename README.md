@@ -2,6 +2,13 @@
 
 This is used for `cse116` to see compilation err on student submissions without leaking the output to the students.
 
+## For Jesse
+1. Clone this repo `git clone https://github.com/zaida04/116-uv.git`
+2. `cd 116-uv`
+3. docker compose up --build
+
+(And I guess figure out how you want to do the reverse proxy? I use Caddy at [reverse_proxy](./reverse_proxy/Caddyfile))
+
 ## Deploying API
 1. Install [bun](https://bun.sh) & [Node.JS](https://nodejs.org)
 2. Install pm2 `bun install --global pm2`
